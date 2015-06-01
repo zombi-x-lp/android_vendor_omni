@@ -41,10 +41,6 @@ PRODUCT_COPY_FILES += \
     vendor/zombi/prebuilt/etc/init.d/00banner:system/etc/init.d/00banner \
     vendor/zombi/prebuilt/bin/sysinit:system/bin/sysinit
 
-# userinit support
-PRODUCT_COPY_FILES += \
-    vendor/zombi/prebuilt/etc/init.d/90userinit:system/etc/init.d/90userinit
-
 # Init script file with zombi extras
 PRODUCT_COPY_FILES += \
     vendor/zombi/prebuilt/etc/init.local.rc:root/init.zombi.rc
