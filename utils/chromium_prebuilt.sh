@@ -41,8 +41,9 @@ mkdir -p $PREBUILT_DIR/lib
 
 if [ -d $TARGET_DIR ]; then
     echo "Copying files..."
-    cp $TARGET_DIR/system/app/webview/webview.apk $PREBUILT_DIR/app/webview.apk
+    cp -r $TARGET_DIR/system/app/webview $PREBUILT_DIR/app/
     cp $TARGET_DIR/system/lib/libwebviewchromium.so $PREBUILT_DIR/lib/libwebviewchromium.so
+    cp $TARGET_DIR/../../common/obj/JAVA_LIBRARIES/android_webview_java_intermediates/javalib.jar $PREBUILT_DIR/android_webview_java.jar
 else
     echo "Please ensure that you have ran a full build prior to running this script!"
     return 1;
@@ -53,7 +54,7 @@ echo "Generating Makefiles..."
 HASH=$(git --git-dir=$TOP/external/chromium_org/.git --work-tree=$TOP/external/chromium_org rev-parse --verify HEAD)
 echo $HASH > $PREBUILT_DIR/hash.txt
 
-(cat << EOF) | sed s/__DEVICE__/$DEVICE/g > $PREBUILT_DIR/Android.mk
+(cat << EOF) | sed s/__DEVICE__/$DEVICE/g > $PREBUILT_DIR/chromium_prebuilt.mk
 # Copyright (C) 2014 The OmniROM Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -70,20 +71,9 @@ echo $HASH > $PREBUILT_DIR/hash.txt
 
 LOCAL_PATH := prebuilts/chromium/__DEVICE__/
 
-ifeq (\$(PRODUCT_PREBUILT_WEBVIEWCHROMIUM),yes)
-
-include \$(CLEAR_VARS)
-
-LOCAL_MODULE := libwebviewchromium
-LOCAL_SRC_FILES := lib/libwebviewchromium.so
-LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE_SUFFIX := .so
-LOCAL_MODULE_CLASS := SHARED_LIBRARIES
-
-include \$(BUILD_PREBUILT)
-
-endif
-
+PRODUCT_COPY_FILES += \\
+    \$(LOCAL_PATH)/app/webview.apk:system/app/webview/webview.apk \\
+    \$(LOCAL_PATH)/lib/libwebviewchromium.so:system/lib/libwebviewchromium.so
 
 EOF
 
