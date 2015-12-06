@@ -1,3 +1,3 @@
-# CDMA APN list
-PRODUCT_COPY_FILES += \
-    vendor/zombi/prebuilt/etc/apns-conf-cdma.xml:system/etc/apns-conf.xml
+# don't break older devices which still use cmda.mk
+$(call inherit-product, vendor/zombi/config/gsm.mk)
+
