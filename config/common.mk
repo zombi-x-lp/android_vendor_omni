@@ -11,7 +11,7 @@ endif
 
 # default wallpaper
 PRODUCT_COPY_FILES += \
-    vendor/omni/prebuilt/default_wallpaper.jpg:system/media/default_wallpaper.jpg
+    vendor/zombi/prebuilt/default_wallpaper.jpg:system/media/default_wallpaper.jpg
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.config.wallpaper=/system/media/default_wallpaper.jpg
 
