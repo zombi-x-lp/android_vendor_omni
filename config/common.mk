@@ -72,3 +72,8 @@ endif
 
 # Add our overlays
 PRODUCT_PACKAGE_OVERLAYS += vendor/zombi/overlay/common
+
+# Enable dexpreopt for all KANG :)
+ifeq ($(ROM_BUILDTYPE),KANG)
+    WITH_DEXPREOPT := true
+endif
