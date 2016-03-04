@@ -42,5 +42,7 @@ PRODUCT_PACKAGES += \
     vim \
     ntfsfix \
     ntfs-3g \
+    libkatcam \
+    libkatomx \
     mkntfs
 
