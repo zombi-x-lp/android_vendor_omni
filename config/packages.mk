@@ -33,16 +33,14 @@ PRODUCT_PACKAGES += \
     htop \
     lsof \
     mke2fs \
-    mkfs.exfat \
     mount.exfat \
     nano \
     openvpn \
     powertop \
     tune2fs \
     vim \
-    ntfsfix \
-    ntfs-3g \
     libkatcam \
     libkatomx \
-    mkntfs
-
+    mkfs.ntfs \
+    mount.ntfs \
+    fsck.ntfs
